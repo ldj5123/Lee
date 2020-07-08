@@ -25,7 +25,7 @@ int main()
 	std::cout << "r3 : (" << r3.Num() << "/ " << r3.Den() << ")" << std::endl;
 	std::cout << "r4 : (" << r4.Num() << "/ " << r4.Den() << ")" << std::endl;
 	
-	r4 = r1 - r2;
+	r4 = r2 - r1;
 	std::cout << "r4 : (" << r4.Num() << "/ " << r4.Den() << ")" << std::endl;
 	
 	r4 = r1 * r2;
@@ -33,6 +33,10 @@ int main()
 	
 	r4 = r1 / r2;
 	std::cout << "r4 : (" << r4.Num() << "/ " << r4.Den() << ")" << std::endl;
+	
+	Rational r5(9, 12);
+	r5.reduce();
+	std::cout << "r5 : (" << r5.Num() << "/ " << r5.Den() << ")" << std::endl;
 	
 	
 	

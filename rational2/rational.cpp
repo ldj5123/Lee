@@ -2,12 +2,31 @@
 #include <iostream>
 #include <cassert>
 
+static int getGcd(int a, int b)
+{
+
+	while(1){
+		if(b>a){
+			int tmp = a;
+			a = b;
+			b = tmp;
+		}
+		a = a % b;
+		if(a==0)
+			return b;
+		if(b%a!=0)
+			a = b % a;
+	}
+
+}
+
 
 Rational::Rational(int num, int den)
 {
 	assert(den != 0);
 	this->num = num;
 	this->den = den;
+	
 }
 
 Rational::Rational(const Rational& rhs)
@@ -38,9 +57,7 @@ const Rational Rational::operator+(const Rational& rhs)
 	Rational result;
 	result.den = this->den*rhs.den;
 	result.num = rhs.den*this->num + this->den*rhs.num;
-	int gcd = reduce(result);
-	result.den = result.den / gcd;
-	result.num = result.num / gcd;
+	result.reduce();
 	return result;
 }
 
@@ -49,9 +66,7 @@ const Rational Rational::operator-(const Rational& rhs)
 	Rational result;
 	result.den = this->den*rhs.den;
 	result.num = rhs.den*this->num - this->den*rhs.num;
-	int gcd = reduce(result);
-	result.den = result.den / gcd;
-	result.num = result.num / gcd;
+	result.reduce();
 	return result;
 }
 
@@ -60,9 +75,7 @@ const Rational Rational::operator*(const Rational& rhs)
 	Rational result;
 	result.den = this->den*rhs.den;
 	result.num = this->num*rhs.num;
-	int gcd = reduce(result);
-	result.den = result.den / gcd;
-	result.num = result.num / gcd;
+	result.reduce();
 	return result;
 }
 
@@ -71,30 +84,11 @@ const Rational Rational::operator/(const Rational& rhs)
 	Rational result;
 	result.den = this->den*rhs.num;
 	result.num = this->num*rhs.den;
-	int gcd = reduce(result);
-	result.den = result.den / gcd;
-	result.num = result.num / gcd;
+	result.reduce();
 	return result;
 }
 
-int Rational::reduce(const Rational& rhs)
-{
-	this->num = rhs.num;
-	this->den = rhs.den;
-	std::cout << "r11 : (" << this->num << "/ " << this->den << ")" << std::endl;
-	while(1){
-		if(this->den > this->num){
-			int tmp = this->num;
-			this->num = this->den;
-			this->den = tmp;
-		}
-		this->num = this->num % this->den;
-		if(this->num==0)
-			return this->den;
-		if(this->den % this->num!=0)
-			this->num = this->den % this->num;
-	}
-}
+
 
 int Rational::Num()
 {
@@ -114,4 +108,13 @@ void Rational::Num(int num)
 void Rational::Den(int den)
 {
 	this->den = den;
+}
+
+void Rational::reduce()
+{
+	int gcd = getGcd(this->num, this->den);
+	
+	this->num = this->num / gcd;
+	this->den = this->den / gcd;
+	
 }

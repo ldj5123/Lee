@@ -5,6 +5,8 @@ class Rational{
 private:
 	int num;
 	int den;
+	
+
 
 public:
 	Rational(int num = 0, int den = 1);
@@ -18,7 +20,7 @@ public:
 	const Rational operator-(const Rational& rhs);
 	const Rational operator*(const Rational& rhs);
 	const Rational operator/(const Rational& rhs);
-	int reduce(const Rational& rhs);
+
 	
 	
 	int Num();
@@ -26,6 +28,8 @@ public:
 	
 	void Num(int num);
 	void Den(int den);
+	
+	void reduce();	
 
 };
 
