@@ -1,6 +1,8 @@
 #include <iostream>
 #include "complex.h"
 
+
+
 int main()
 {
 	Complex c1;
@@ -27,6 +29,19 @@ int main()
 	std::cout << "c4 : " << c4 << std::endl;
 	std::cout << "c5 : " << c5 << std::endl;
 	
-
+	Complex *pc = new Complex;
+	Complex *pArr[5];
+	pArr[0] = new Complex;
+	pArr[1] = new Complex(1.0);
+	pArr[2] = new Complex(3.0, 4.0);
+	pArr[3] = new Complex;
+	pArr[4] = new Complex;
+	std::cout << "# Complex object : " << Complex::getNumberOfComplex() << std::endl;
+	delete pc;			// 소멸자 + free
+	for (int i = 0; i <5 ; ++i)
+		delete pArr[i];
+	std::cout << "# Complex object : " << Complex::getNumberOfComplex() << std::endl;
+	
+	
 	return 0;
 }	

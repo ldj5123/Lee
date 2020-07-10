@@ -42,8 +42,21 @@ int main()
 	const Rational r6 = r4;
 	std::cout << "r6 : " << r6 << std::endl;
 	
+	Rational *pr = new Rational;
+	Rational *pArr[5];
+	pArr[0] = new Rational;
+	pArr[1] = new Rational(2);
+	pArr[2] = new Rational(2, 3);
+	pArr[3] = new Rational;
+	pArr[4] = new Rational;
 	
+	std::cout << "# Rational object : " << Rational::getNumberOfRational() << std::endl;
 	
+	delete pr;
+	for (int i = 0; i < 5; ++i)
+		delete pArr[i];
+	std::cout << "# Rational object : " << Rational::getNumberOfRational() << std::endl;
 	
+
 	return 0;
 }

@@ -1,5 +1,6 @@
 #include "rational.h"
 #include <cassert>
+int Rational::numberOfRational;
 
 std::ostream& operator<<(std::ostream& out, const Rational& rhs)
 {
@@ -27,11 +28,26 @@ static int getGcd(int a, int b)
 
 }
 
+int Rational::getNumberOfRational()
+{
+	return Rational::numberOfRational;
+}
+
 
 Rational::Rational(int num, int den)
 : num_(num), den_(den)
 {
+	++Rational::numberOfRational;
+}
 
+Rational::Rational(const Rational& rhs)
+{
+	++Rational::numberOfRational;
+}
+
+Rational::~Rational()
+{
+	--Rational::numberOfRational;
 }
 
 bool Rational::operator==(const Rational& rhs) const
