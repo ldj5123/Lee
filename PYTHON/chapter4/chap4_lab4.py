@@ -1,0 +1,8 @@
+print('이차방정식 ax^2 + bx + c 해 계산기입니다.')
+a = int(input('a 값 : '))
+b = int(input('b 값 : '))
+c = int(input('c 값 : '))
+print('이차방정식 ', a, 'x^2 + ', b, 'x + ', c, ' 의 해는\n')
+print(-b, ' ± ', (b**2-4*a*c)**(1/2))
+print('----------')
+print('   ', 2*a)
